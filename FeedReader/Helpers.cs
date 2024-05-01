@@ -58,9 +58,10 @@
             {
                 request.Headers.TryAddWithoutValidation(ACCEPT_HEADER_NAME, ACCEPT_HEADER_VALUE);
                 request.Headers.TryAddWithoutValidation(USER_AGENT_NAME, userAgent);
-
+                
                 response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, cancellationToken).ConfigureAwait(false);
             }
+            
             if (!response.IsSuccessStatusCode)
             {
                 var statusCode = (int)response.StatusCode;
@@ -68,11 +69,14 @@
                 if (autoRedirect && (statusCode == 301 || statusCode == 302 || statusCode == 308))
                 {
                     url = response.Headers?.Location?.AbsoluteUri ?? url;
-                }
 
-                using (var request = new HttpRequestMessage(HttpMethod.Get, url))
-                {
+                    using var request = new HttpRequestMessage(HttpMethod.Get, url);
                     response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseContentRead, cancellationToken).ConfigureAwait(false);
+                }
+                else
+                {
+                    throw new HttpRequestException($"The received status code ({statusCode} - {response.StatusCode}) does not indicate a successful response", null, response.StatusCode);
+                    
                 }
             }
             var content = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
