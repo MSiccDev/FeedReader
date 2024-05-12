@@ -76,7 +76,6 @@
                 else
                 {
                     throw new HttpRequestException($"The received status code ({statusCode} - {response.StatusCode}) does not indicate a successful response", null, response.StatusCode);
-                    
                 }
             }
             var content = await response.Content.ReadAsByteArrayAsync().ConfigureAwait(false);
