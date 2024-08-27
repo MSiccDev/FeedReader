@@ -13,7 +13,7 @@
         /// <param name="image">The itunes:image element</param>
         public ItunesImage(XElement image)
         {
-            Href = image.GetAttributeValue("href");
+            this.Href = image.GetAttributeValue("href");
         }
 
         /// <summary>

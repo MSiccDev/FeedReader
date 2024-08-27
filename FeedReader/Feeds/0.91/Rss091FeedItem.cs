@@ -52,7 +52,7 @@
                 Description = this.Description,
                 PublishingDate = this.PublishingDate,
                 PublishingDateString = this.PublishingDateString,
-                Id = this.Link
+                Id = Link
             };
             return fi;
         }

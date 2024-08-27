@@ -16,35 +16,35 @@
         /// <param name="channelElement"></param>
         public ItunesChannel(XElement channelElement)
         {
-            Author = channelElement.GetValue(NAMESPACEPREFIX, "author");
-            Block = channelElement.GetValue(NAMESPACEPREFIX, "block").EqualsIgnoreCase("yes");
-            Categories = GetItunesCategories(channelElement);
+            this.Author = channelElement.GetValue(NAMESPACEPREFIX, "author");
+            this.Block = channelElement.GetValue(NAMESPACEPREFIX, "block").EqualsIgnoreCase("yes");
+            this.Categories = GetItunesCategories(channelElement);
 
             var imageElement = channelElement.GetElement(NAMESPACEPREFIX, "image");
             if (imageElement != null)
             {
-                Image = new ItunesImage(imageElement);
+                this.Image = new ItunesImage(imageElement);
             }
 
             var explicitValue = channelElement.GetValue(NAMESPACEPREFIX, "explicit");
-            Explicit = explicitValue.EqualsIgnoreCase("yes", "explicit", "true");
-            
-            Complete = channelElement.GetValue(NAMESPACEPREFIX, "complete").EqualsIgnoreCase("yes");
+            this.Explicit = explicitValue.EqualsIgnoreCase("yes", "explicit", "true");
+
+            this.Complete = channelElement.GetValue(NAMESPACEPREFIX, "complete").EqualsIgnoreCase("yes");
 
             if (Uri.TryCreate(channelElement.GetValue(NAMESPACEPREFIX, "new-feed-url"), UriKind.Absolute, out var newFeedUrl))
             {
-                NewFeedUrl = newFeedUrl;
+                this.NewFeedUrl = newFeedUrl;
             }
 
             var ownerElement = channelElement.GetElement(NAMESPACEPREFIX, "owner");
 
             if (ownerElement != null)
             {
-                Owner = new ItunesOwner(ownerElement);
+                this.Owner = new ItunesOwner(ownerElement);
             }
 
-            Subtitle = channelElement.GetValue(NAMESPACEPREFIX, "subtitle");
-            Summary = channelElement.GetValue(NAMESPACEPREFIX, "summary");
+            this.Subtitle = channelElement.GetValue(NAMESPACEPREFIX, "subtitle");
+            this.Summary = channelElement.GetValue(NAMESPACEPREFIX, "summary");
         }
 
         /// <summary>

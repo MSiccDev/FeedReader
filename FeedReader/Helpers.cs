@@ -52,7 +52,7 @@
         /// <returns>Content as byte array</returns>
         public static async Task<byte[]> DownloadBytesAsync(string url, CancellationToken cancellationToken, bool autoRedirect = true, string userAgent = USER_AGENT_VALUE)
         {
-            url = System.Net.WebUtility.UrlDecode(url);
+            url = WebUtility.UrlDecode(url);
             HttpResponseMessage response;
             using (var request = new HttpRequestMessage(HttpMethod.Get, url))
             {

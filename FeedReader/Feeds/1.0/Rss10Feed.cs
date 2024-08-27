@@ -67,7 +67,7 @@
             var items = channel.Parent.GetElements("item");
             foreach (var item in items)
             {
-                this.Items.Add(new Rss10FeedItem(item));
+                Items.Add(new Rss10FeedItem(item));
             }
         }
 

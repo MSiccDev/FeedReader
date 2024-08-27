@@ -13,8 +13,8 @@
         /// <param name="children"></param>
         internal ItunesCategory(string text, ItunesCategory[] children)
         {
-            Text = text;
-            Children = children;
+            this.Text = text;
+            this.Children = children;
         }
 
         /// <summary>

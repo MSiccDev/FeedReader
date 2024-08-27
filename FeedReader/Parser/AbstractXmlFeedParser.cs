@@ -9,7 +9,7 @@
         {
             XDocument feedDoc = XDocument.Parse(feedXml);
 
-            return this.Parse(feedXml, feedDoc);
+            return Parse(feedXml, feedDoc);
         }
 
         public abstract BaseFeed Parse(string feedXml, XDocument feedDoc);

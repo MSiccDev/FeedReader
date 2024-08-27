@@ -132,7 +132,7 @@
             this.Docs = channel.GetValue("docs");
             this.PublishingDateString = channel.GetValue("pubDate");
             this.LastBuildDateString = channel.GetValue("lastBuildDate");
-            this.ParseDates(this.Language, this.PublishingDateString, this.LastBuildDateString);
+            ParseDates(this.Language, this.PublishingDateString, this.LastBuildDateString);
 
             var categories = channel.GetElements("category");
             this.Categories = categories.Select(x => x.GetValue()).ToList();
@@ -156,7 +156,7 @@
 
             foreach (var item in items)
             {
-                this.Items.Add(new MediaRssFeedItem(item));
+                Items.Add(new MediaRssFeedItem(item));
             }
         }
 

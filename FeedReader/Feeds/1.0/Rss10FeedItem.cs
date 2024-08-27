@@ -68,7 +68,7 @@
             f.Description = this.Description;
             if (string.IsNullOrEmpty(f.Content))
                 f.Content = this.Description;
-            f.Id = this.Link;
+            f.Id = Link;
 
             return f;
         }

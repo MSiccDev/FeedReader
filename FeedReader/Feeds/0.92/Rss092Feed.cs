@@ -39,7 +39,7 @@
         {
             foreach (var item in items)
             {
-                this.Items.Add(new Rss092FeedItem(item));
+                Items.Add(new Rss092FeedItem(item));
             }
         }
 

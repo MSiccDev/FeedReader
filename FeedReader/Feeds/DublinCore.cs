@@ -109,7 +109,7 @@
             this.Publisher = item.GetValue("dc:publisher");
             this.Contributor = item.GetValue("dc:contributor");
             this.DateString = item.GetValue("dc:date");
-            this.Date = Helpers.TryParseDateTime(DateString);
+            this.Date = Helpers.TryParseDateTime(this.DateString);
             this.Type = item.GetValue("dc:type");
             this.Format = item.GetValue("dc:format");
             this.Identifier = item.GetValue("dc:identifier");

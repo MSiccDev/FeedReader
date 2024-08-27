@@ -70,7 +70,7 @@
         /// </summary>
         public string OriginalDocument
         {
-            get { return SpecificFeed.OriginalDocument; }
+            get { return this.SpecificFeed.OriginalDocument; }
         }
 
         /// <summary>
@@ -94,12 +94,12 @@
         /// <param name="feed">BaseFeed which is a <see cref="Rss20Feed"/> , <see cref="Rss10Feed"/>, or another.</param>
         public Feed(BaseFeed feed)
         {
-            SpecificFeed = feed;
+            this.SpecificFeed = feed;
 
-            Title = feed.Title;
-            Link = feed.Link;
+            this.Title = feed.Title;
+            this.Link = feed.Link;
 
-            Items = feed.Items.Select(x => x.ToFeedItem()).ToList();
+            this.Items = feed.Items.Select(x => x.ToFeedItem()).ToList();
         }
     }
 }
