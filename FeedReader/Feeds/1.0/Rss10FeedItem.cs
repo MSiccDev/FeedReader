@@ -55,7 +55,7 @@
         /// <inheritdoc/>
         internal override FeedItem ToFeedItem()
         {
-            FeedItem f = new FeedItem(this);
+            var f = new FeedItem(this);
 
             if (this.DC != null)
             {

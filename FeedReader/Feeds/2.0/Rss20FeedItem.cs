@@ -101,7 +101,7 @@
         /// <inheritdoc/>
         internal override FeedItem ToFeedItem()
         {
-            FeedItem fi = new FeedItem(this)
+            var fi = new FeedItem(this)
             {
                 Author = this.Author,
                 Categories = this.Categories,

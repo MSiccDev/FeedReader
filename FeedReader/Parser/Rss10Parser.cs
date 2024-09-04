@@ -9,7 +9,7 @@
         {
             var rdf = feedDoc.Root;
             var channel = rdf.GetElement("channel");
-            Rss10Feed feed = new Rss10Feed(feedXml, channel);
+            var feed = new Rss10Feed(feedXml, channel);
             return feed;
         }
     }

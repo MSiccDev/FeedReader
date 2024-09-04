@@ -166,7 +166,7 @@
         /// <returns>feed</returns>
         public override Feed ToFeed()
         {
-            Feed f = new Feed(this)
+            var f = new Feed(this)
             {
                 Copyright = this.Copyright,
                 Description = this.Description,
@@ -196,10 +196,10 @@
                 return;
 
             // if publishingDateString is set but PublishingDate is null - try to parse with culture of "Language" property
-            bool parseLocalizedPublishingDate = this.PublishingDate == null && !string.IsNullOrWhiteSpace(this.PublishingDateString);
+            var parseLocalizedPublishingDate = this.PublishingDate == null && !string.IsNullOrWhiteSpace(this.PublishingDateString);
 
             // if LastBuildDateString is set but LastBuildDate is null - try to parse with culture of "Language" property
-            bool parseLocalizedLastBuildDate = this.LastBuildDate == null && !string.IsNullOrWhiteSpace(this.LastBuildDateString);
+            var parseLocalizedLastBuildDate = this.LastBuildDate == null && !string.IsNullOrWhiteSpace(this.LastBuildDateString);
 
             // if both dates are set - return
             if (!parseLocalizedPublishingDate && !parseLocalizedLastBuildDate)

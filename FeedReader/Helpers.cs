@@ -133,7 +133,7 @@
                 return null;
 
             var dateTimeFormat = cultureInfo?.DateTimeFormat ?? DateTimeFormatInfo.CurrentInfo;
-            bool parseSuccess = DateTimeOffset.TryParse(datetime, dateTimeFormat, DateTimeStyles.None, out var dt);
+            var parseSuccess = DateTimeOffset.TryParse(datetime, dateTimeFormat, DateTimeStyles.None, out var dt);
 
             if (!parseSuccess)
             {
@@ -141,14 +141,14 @@
                 // note - tried ParseExact with diff formats like "ddd, dd MMM yyyy hh:mm:ss K"
                 if (datetime.Contains(","))
                 {
-                    int pos = datetime.IndexOf(',') + 1;
-                    string newdtstring = datetime.Substring(pos).Trim();
+                    var pos = datetime.IndexOf(',') + 1;
+                    var newdtstring = datetime.Substring(pos).Trim();
 
                     parseSuccess = DateTimeOffset.TryParse(newdtstring, dateTimeFormat, DateTimeStyles.None, out dt);
                 }
                 if (!parseSuccess)
                 {
-                    string newdtstring = datetime.Substring(0, datetime.LastIndexOf(" ")).Trim();
+                    var newdtstring = datetime.Substring(0, datetime.LastIndexOf(" ")).Trim();
 
                     parseSuccess = DateTimeOffset.TryParse(newdtstring, dateTimeFormat, DateTimeStyles.AssumeUniversal,
                         out dt);
@@ -156,7 +156,7 @@
                 
                 if (!parseSuccess)
                 {
-                    string newdtstring = datetime.Substring(0, datetime.LastIndexOf(" ")).Trim();
+                    var newdtstring = datetime.Substring(0, datetime.LastIndexOf(" ")).Trim();
                     
                     parseSuccess = DateTimeOffset.TryParse(newdtstring, dateTimeFormat, DateTimeStyles.None,
                         out dt);
@@ -176,7 +176,7 @@
         /// <returns>integer or null</returns>
         public static int? TryParseInt(string input)
         {
-            if (!int.TryParse(input, out int tmp))
+            if (!int.TryParse(input, out var tmp))
                 return null;
             return tmp;
         }
@@ -243,15 +243,15 @@
         /// <returns>Parsed HtmlFeedLink</returns>
         public static HtmlFeedLink GetFeedLinkFromLinkTag(string input)
         {
-            string linkTag = input.HtmlDecode();
-            string type = GetAttributeFromLinkTag("type", linkTag).ToLower();
+            var linkTag = input.HtmlDecode();
+            var type = GetAttributeFromLinkTag("type", linkTag).ToLower();
 
             if (!type.Contains("application/rss") && !type.Contains("application/atom"))
                 return null;
 
-            HtmlFeedLink hfl = new HtmlFeedLink();
-            string title = GetAttributeFromLinkTag("title", linkTag);
-            string href = GetAttributeFromLinkTag("href", linkTag);
+            var hfl = new HtmlFeedLink();
+            var title = GetAttributeFromLinkTag("title", linkTag);
+            var href = GetAttributeFromLinkTag("href", linkTag);
             hfl.Title = title;
             hfl.Url = href;
             hfl.FeedType = type.Contains("rss") ? FeedType.Rss : FeedType.Atom;
@@ -269,9 +269,9 @@
             // <link rel="alternate" type="application/rss+xml" title="Microsoft Bot Framework Blog" href="http://blog.botframework.com/feed.xml">
             // <link rel="alternate" type="application/atom+xml" title="Aktuelle News von heise online" href="https://www.heise.de/newsticker/heise-atom.xml">
 
-            Regex rex = new Regex("<link[^>]*rel=\"alternate\"[^>]*>", RegexOptions.Singleline);
+            var rex = new Regex("<link[^>]*rel=\"alternate\"[^>]*>", RegexOptions.Singleline);
 
-            List<HtmlFeedLink> result = new List<HtmlFeedLink>();
+            var result = new List<HtmlFeedLink>();
 
             foreach (Match m in rex.Matches(htmlContent))
             {

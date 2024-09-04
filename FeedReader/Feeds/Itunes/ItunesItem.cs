@@ -47,20 +47,20 @@ namespace CodeHollow.FeedReader.Feeds.Itunes
 
             var durationArray = duration.Split(':');
 
-            if (durationArray.Length == 1 && long.TryParse(durationArray[0], out long result))
+            if (durationArray.Length == 1 && long.TryParse(durationArray[0], out var result))
             {
                 return TimeSpan.FromSeconds(result);
             }
 
-            if (durationArray.Length == 2 && int.TryParse(durationArray[0], out int minutes) &&
-                    int.TryParse(durationArray[1], out int seconds))
+            if (durationArray.Length == 2 && int.TryParse(durationArray[0], out var minutes) &&
+                    int.TryParse(durationArray[1], out var seconds))
             {
                 return new TimeSpan(0, minutes, seconds);
             }
 
-            if (durationArray.Length == 3 && int.TryParse(durationArray[0], out int hours) &&
-                    int.TryParse(durationArray[1], out int min) &&
-                    int.TryParse(durationArray[2], out int sec))
+            if (durationArray.Length == 3 && int.TryParse(durationArray[0], out var hours) &&
+                    int.TryParse(durationArray[1], out var min) &&
+                    int.TryParse(durationArray[2], out var sec))
             {
                 return new TimeSpan(hours, min, sec);
             }

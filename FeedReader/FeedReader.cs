@@ -42,7 +42,7 @@
         /// <example>GetAbsoluteFeedUrl("codehollow.com", myRelativeFeedLink);</example>
         public static HtmlFeedLink GetAbsoluteFeedUrl(string pageUrl, HtmlFeedLink feedLink)
         {
-            string tmpUrl = feedLink.Url.HtmlDecode();
+            var tmpUrl = feedLink.Url.HtmlDecode();
             pageUrl = GetAbsoluteUrl(pageUrl);
 
             if (tmpUrl.StartsWith("http://", StringComparison.OrdinalIgnoreCase)
@@ -52,7 +52,7 @@
             if (tmpUrl.StartsWith("//", StringComparison.OrdinalIgnoreCase)) // special case
                 tmpUrl = "http:" + tmpUrl;
 
-            if (Uri.TryCreate(tmpUrl, UriKind.RelativeOrAbsolute, out Uri finalUri))
+            if (Uri.TryCreate(tmpUrl, UriKind.RelativeOrAbsolute, out var finalUri))
             {
                 if (finalUri.IsAbsoluteUri)
                 {
@@ -90,7 +90,7 @@
         public static async Task<IEnumerable<HtmlFeedLink>> GetFeedUrlsFromUrlAsync(string url, CancellationToken cancellationToken, bool autoRedirect = true)
         {
             url = GetAbsoluteUrl(url);
-            string pageContent = await Helpers.DownloadAsync(url, cancellationToken, autoRedirect).ConfigureAwait(false);
+            var pageContent = await Helpers.DownloadAsync(url, cancellationToken, autoRedirect).ConfigureAwait(false);
             var links = ParseFeedUrlsFromHtml(pageContent);
             return links;
         }

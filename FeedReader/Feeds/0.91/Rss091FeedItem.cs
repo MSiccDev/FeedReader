@@ -47,7 +47,7 @@
 
         internal override FeedItem ToFeedItem()
         {
-            FeedItem fi = new FeedItem(this)
+            var fi = new FeedItem(this)
             {
                 Description = this.Description,
                 PublishingDate = this.PublishingDate,

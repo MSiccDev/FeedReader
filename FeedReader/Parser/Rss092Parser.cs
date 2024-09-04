@@ -9,7 +9,7 @@
         {
             var rss = feedDoc.Root;
             var channel = rss.GetElement("channel");
-            Rss092Feed feed = new Rss092Feed(feedXml, channel);
+            var feed = new Rss092Feed(feedXml, channel);
             return feed;
         }
     }

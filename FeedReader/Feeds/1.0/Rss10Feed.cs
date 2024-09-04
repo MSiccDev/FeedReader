@@ -77,7 +77,7 @@
         /// <returns>feed</returns>
         public override Feed ToFeed()
         {
-            Feed f = new Feed(this);
+            var f = new Feed(this);
 
             if (this.DC != null)
             {

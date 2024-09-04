@@ -41,7 +41,7 @@
         /// <returns></returns>
         public static bool EqualsIgnoreCase(this string text, params string[] compareTo)
         {
-            foreach(string value in compareTo)
+            foreach(var value in compareTo)
             {
                 if (text.EqualsIgnoreCase(value))
                     return true;
@@ -251,7 +251,7 @@
             string namesp = null;
             if (name.Contains(":"))
             {
-                int pos = name.IndexOf(':');
+                var pos = name.IndexOf(':');
                 namesp = name.Substring(0, pos);
                 name = name.Substring(pos + 1);
             }

@@ -18,7 +18,7 @@
         /// <returns>the feed type</returns>
         public static FeedType ParseFeedType(XDocument doc)
         {
-            string rootElement = doc.Root.Name.LocalName;
+            var rootElement = doc.Root.Name.LocalName;
             
             if (rootElement.EqualsIgnoreCase("feed"))
                 return FeedType.Atom;
@@ -28,7 +28,7 @@
 
             if (rootElement.EqualsIgnoreCase("rss"))
             {
-                string version = doc.Root.Attribute("version").Value;
+                var version = doc.Root.Attribute("version").Value;
                 if (version.EqualsIgnoreCase("2.0")) {
                     if (doc.Root.Attribute(XName.Get("media", XNamespace.Xmlns.NamespaceName)) != null) {
                         return FeedType.MediaRss;
@@ -58,12 +58,12 @@
         /// <returns>parsed feed</returns>
         public static Feed GetFeed(byte[] feedContentData)
         {
-            string feedContent = Encoding.UTF8.GetString(feedContentData); // 1.) get string of the content
+            var feedContent = Encoding.UTF8.GetString(feedContentData); // 1.) get string of the content
             feedContent = RemoveWrongChars(feedContent);
 
-            XDocument feedDoc = XDocument.Parse(feedContent); // 2.) read document to get the used encoding
+            var feedDoc = XDocument.Parse(feedContent); // 2.) read document to get the used encoding
 
-            Encoding encoding = GetEncoding(feedDoc); // 3.) get used encoding
+            var encoding = GetEncoding(feedDoc); // 3.) get used encoding
 
             if (encoding != Encoding.UTF8) // 4.) if not UTF8 - reread the data :
                                            // in some cases - ISO-8859-1 - Encoding.UTF8.GetString doesn't work correct, so converting
@@ -90,7 +90,7 @@
         {
             feedContent = RemoveWrongChars(feedContent);
 
-            XDocument feedDoc = XDocument.Parse(feedContent);
+            var feedDoc = XDocument.Parse(feedContent);
 
             var feedType = ParseFeedType(feedDoc);
 
@@ -107,7 +107,7 @@
         /// <returns>encoding or utf8 by default</returns>
         private static Encoding GetEncoding(XDocument feedDoc)
         {
-            Encoding encoding = Encoding.UTF8;
+            var encoding = Encoding.UTF8;
 
             try
             {
@@ -129,7 +129,7 @@
         private static string RemoveWrongChars(string feedContent)
         {
             // replaces all control characters except CR LF (\r\n) and TAB.
-            for (int charCode = 0; charCode <= 31; charCode++)
+            for (var charCode = 0; charCode <= 31; charCode++)
             {
                 if (charCode == 0x0D || charCode == 0x0A || charCode == 0x09) continue;
 

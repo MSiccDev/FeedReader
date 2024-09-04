@@ -7,7 +7,7 @@
     {
         public BaseFeed Parse(string feedXml)
         {
-            XDocument feedDoc = XDocument.Parse(feedXml);
+            var feedDoc = XDocument.Parse(feedXml);
 
             return Parse(feedXml, feedDoc);
         }

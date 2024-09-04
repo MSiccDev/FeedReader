@@ -7,7 +7,7 @@
     {
         public override BaseFeed Parse(string feedXml, XDocument feedDoc)
         {
-            AtomFeed feed = new AtomFeed(feedXml, feedDoc.Root);
+            var feed = new AtomFeed(feedXml, feedDoc.Root);
             return feed;
         }
     }
